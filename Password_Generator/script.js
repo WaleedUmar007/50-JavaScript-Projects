@@ -14,6 +14,13 @@ const randomFunc={
     symbol:getRandomSymbol
 
 }
+
+//Creating an event listener for copy to clipboard
+
+clipboardEl.addEventListener('click',()=>{
+    const textarea = document.createElement('textarea')
+    
+})
 //Creating an event listener of click for generateEl
 
 generateEl.addEventListener('click',()=>{
@@ -22,16 +29,29 @@ generateEl.addEventListener('click',()=>{
     const hasUpperCase = uppercaseEl.checked
     const hasNumbers = numbersEl.checked
     const hasSymbols = symbolsEl.checked
-    console.log (hasLowerCase)
+    
 
-    resultEl.innerText= generatePassword (hasSymbols,hasLowerCase,hasUpperCase,hasNumbers,length) //to generate password
+    resultEl.innerText= generatePassword (hasLowerCase,hasUpperCase,hasNumbers,hasSymbols,length) //to generate password
 
 
 })
 function generatePassword(lower,upper,numbers,symbol,length){
     let generatedPassowrd = ''
     const typesCount = lower + upper + numbers + symbol 
-    console.log(typesCount)
+    const typeArr = [{lower},{upper},{numbers},{symbol}].filter(item=>Object.values(item)[0]) //filter is used to filter out the items which are not checked
+    //console.log(typeArr)
+
+    if(typesCount=== 0){
+        return '' //return empty string if no checkbox is ticked
+    }
+    for (let i=0; i<length; i+=typesCount){
+        typeArr.forEach(type=>{
+            const funcName = Object.keys(type)[0]
+            generatedPassowrd +=randomFunc[funcName]() 
+        })
+    }
+    const finalPassword = generatedPassowrd.slice(0,length) //the 2nd parameter tells the final length selected for the password
+    return finalPassword
 }
 
 function getLowerCase(){
