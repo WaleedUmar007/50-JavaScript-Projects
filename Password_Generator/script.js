@@ -19,7 +19,15 @@ const randomFunc={
 
 clipboardEl.addEventListener('click',()=>{
     const textarea = document.createElement('textarea')
-    
+    const password = resultEl.innerText
+
+    if(!password){return}
+    textarea.value=password
+    document.body.appendChild(textarea)
+    textarea.select()
+    document.execCommand('copy') //copy is a build in command for document.execCommand
+    textarea.remove()
+    alert("Password sucessfully copied to clipboard!")
 })
 //Creating an event listener of click for generateEl
 
