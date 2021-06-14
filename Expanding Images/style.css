@@ -14,6 +14,7 @@ body{
     height: 100vh;
     overflow: hidden;
     margin: 0;
+    background-color: grey;
 }
 
 .container{
@@ -27,7 +28,7 @@ body{
     background-repeat: no-repeat;
     height: 80vh;
     border-radius: 50px;
-    color: white;
+    color:white;
     cursor: pointer;
     flex: 0.5px;
     margin: 10px;
@@ -38,7 +39,7 @@ body{
 
 
 .panel h3{
-    font-size: 25px;
+    font-size: 22px;
     position: absolute;
     bottom: 20px;
     left: 20px;
@@ -51,6 +52,7 @@ body{
 
 .panel.active h3{
     opacity: 1;
+    transition: opacity 0.3s ease-in 0.4; /* adding ease in transition on opacity */
 }
 
 
